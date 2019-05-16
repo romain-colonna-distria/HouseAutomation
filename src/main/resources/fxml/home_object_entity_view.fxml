@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="68.0" prefWidth="237.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeObjectEntityController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" strokeType="INSIDE" strokeWidth="3.0" width="238.0">
+         <stroke>
+            <LinearGradient endX="0.2307692307692308" endY="0.13461538461538458" startX="0.20673076923076922" startY="0.3125">
+               <stops>
+                  <Stop color="#323131" />
+                  <Stop color="#6f6f6f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Rectangle>
+       <Label fx:id="nameObjectLabel" layoutX="6.0" layoutY="4.0" text="Label">
+         <font>
+            <Font size="12.0" />
+         </font></Label>
+       <Label fx:id="nameParentLabel" layoutX="11.0" layoutY="18.0" text="Label">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="infosPane" layoutX="101.0" layoutY="7.0" prefHeight="55.0" prefWidth="130.0" style="-fx-background-color: grey;" />
+   </children>
+</AnchorPane>
