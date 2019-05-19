@@ -28,4 +28,8 @@ public class Thermometer extends HomeObjectEntity {
     public void executeFunction() {
         getRoot().getTemperature();
     }
+
+    public static int getThermometerId() {
+        return thermometerId;
+    }
 }
