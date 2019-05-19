@@ -31,4 +31,21 @@ public class CoordinatesPair {
     public void setY2(double y2) {
         this.y2 = y2;
     }
+
+    public double getX1()
+    {
+        return x1;
+    }
+
+    public double getY1() {
+        return y1;
+    }
+
+    public double getX2() {
+        return x2;
+    }
+
+    public double getY2() {
+        return y2;
+    }
 }
