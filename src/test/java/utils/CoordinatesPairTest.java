@@ -23,8 +23,11 @@ public class CoordinatesPairTest {
 
     @Test
     void testGetDistance(){
-        assertEquals(1,point3.getDistance());
-        assertEquals(0,point1.getDistance());
+        point.setX2(1);
+        point.setY2(2);
+        assertEquals(0, point.getDistance());
+        assertEquals(1, point3.getDistance());
+        assertEquals(0, point1.getDistance());
     }
 
     @Test
@@ -59,6 +62,22 @@ public class CoordinatesPairTest {
     @Test
     void testGetY2(){
         assertEquals(0,point.getY2());
+    }
+
+    @Test
+    void testSetX2(){
+        point.setX2(2);
+        point1.setX2(-2);
+        assertEquals(2,point.getX2());
+        assertEquals(-2, point1.getX2());
+    }
+
+    @Test
+    void testSetY2(){
+        point.setY2(3.5);
+        point1.setY2(4.84);
+        assertEquals(3.5, point.getY2());
+        assertEquals(4.84, point1.getY2());
     }
 
 
