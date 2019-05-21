@@ -1,19 +1,21 @@
 package homeObject.complex;
 
 import homeObject.HomeObject;
+import homeObject.observer.Observable;
+import homeObject.observer.Observer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HomeObjectComplex extends Polygon implements HomeObject {
+public abstract class HomeObjectComplex extends Polygon implements HomeObject, Observable {
     private String name;
     private List<HomeObject> objects = new ArrayList<>();
 
     private double temperature;
     private double humidityLevel;
-    private double brightnessLevel;
+    private double lumens;
 
     public HomeObjectComplex(String name){
         super();
@@ -29,6 +31,14 @@ public abstract class HomeObjectComplex extends Polygon implements HomeObject {
         areaDrawingHouse.getChildren().add(this);
     }
 
+    @Override
+    public void notifyChange() {
+        for(HomeObject object : objects){
+            if(!(object instanceof Observer)) continue;
+            ((Observer) object).notifyChange();
+        }
+    }
+
     public void addObject(HomeObject newObject){
         objects.add(newObject);
     }
@@ -37,8 +47,12 @@ public abstract class HomeObjectComplex extends Polygon implements HomeObject {
         objects.remove(object);
     }
 
-    public List<HomeObject> getObjects(){
-        return objects;
+    public void increasesTemperature(){
+        ++this.temperature;
+    }
+
+    public void decreasesTemperature(){
+        --this.temperature;
     }
 
     public void setOnMovingColor(){
@@ -51,18 +65,16 @@ public abstract class HomeObjectComplex extends Polygon implements HomeObject {
     public String getName() {
         return name;
     }
-
+    public List<HomeObject> getObjects(){
+        return objects;
+    }
     public double getTemperature() {
         return temperature;
     }
-
     public double getHumidityLevel() {
         return humidityLevel;
     }
-
-    public double getBrightnessLevel() {
-        return brightnessLevel;
+    public double getLumens() {
+        return lumens;
     }
-
-
 }

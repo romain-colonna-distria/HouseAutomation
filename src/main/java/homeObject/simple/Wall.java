@@ -18,19 +18,11 @@ import java.util.Set;
 public class Wall extends HomeObjectSimple {
     private static int wallId = 0;
 
-    private Set<Wall> intersectWalls;
-
-    private boolean isHorizontal;
-
     private HomeObject destination;
 
     public Wall() {
         super("Wall" + ++wallId);
-
-        intersectWalls = new HashSet<>();
         setStrokeWidth(8);
-
-
     }
 
     @Override
@@ -39,18 +31,16 @@ public class Wall extends HomeObjectSimple {
         if(getWidth() > getHeight()) {
             getElements().add(new MoveTo(getX(), getY()));
             getElements().add(new LineTo(getX(), getY() + getWidth() - (getWidth() < 5 ? getWidth() : 5))); //le ternnaire permet de décaler le trait du mur de la sourie
-            isHorizontal = true;
         } else {
             getElements().add(new MoveTo(getX(), getY()));
             getElements().add(new LineTo(getX() + getHeight() - (getHeight() < 5 ? getHeight() : 5), getY()));
-            isHorizontal = false;
         }
 
 
         setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                onMouseEvent(event);
+                setStrokeWidth(15);
             }
         });
 
@@ -65,7 +55,7 @@ public class Wall extends HomeObjectSimple {
         setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                onMouseEvent(event);
+                setStrokeWidth(15);
             }
         });
 
@@ -77,65 +67,14 @@ public class Wall extends HomeObjectSimple {
         });
     }
 
-    private void onMouseEvent(MouseEvent event){
-        Bounds bounds = ((Wall) event.getTarget()).getBoundsInLocal();
-        Bounds screenBounds = localToScreen(bounds);
-
-        /*
-        if(isHorizontal){
-            moveCursor(event.getScreenX() + getStrokeWidth()/2, event.getScreenY());
-        } else {
-            moveCursor(event.getScreenX(), event.getScreenY() + getStrokeWidth()/2);
-        }
-        */
-
-        setStrokeWidth(15);
-    }
-
-    /**
-     * Déplace la sourie a la position souhaité.
-     * @param screenX Position x
-     * @param screenY Position y
-     */
-    private void moveCursor(double screenX, double screenY) {
-        Platform.runLater(() -> {
-            try {
-                Robot robot = new Robot();
-                robot.mouseMove((int)screenX, (int)screenY);
-            } catch (AWTException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        });
-    }
-
-
     @Override
     public boolean isDrawable() {
-        return getSize() > 20 && !isTheSameSourceAndDest();
-    }
-
-    private boolean isTheSameSourceAndDest(){
-        return false;
-        /*
-        if(!(getSourceObject() instanceof Wall) || !(getDestinationObject() instanceof Wall)) return true;
-        else {
-            return !getSourceObject().equals(getDestinationObject());
-        }
-        */
+        return getSize() > 20 /*&& !getSourceObject().equals(getDestinationObject())*/;
     }
 
     @Override
     public void setOnFinalColor(){
         setStroke(Color.rgb(54, 54, 54));
-    }
-
-    public Set<Wall> getIntersectWalls() {
-        return intersectWalls;
-    }
-
-    public void addIntersectWall(Wall intersectWall) {
-        this.intersectWalls.add(intersectWall);
     }
 
     public HomeObject getDestinationObject() {
@@ -145,11 +84,25 @@ public class Wall extends HomeObjectSimple {
     public void setDestinationObject(HomeObject destination) {
         this.destination = destination;
     }
-
-    /*
-    @Override
-    public String toString() {
-        return getName();
-    }
-    */
 }
+
+
+/*
+    /**
+     * Déplace la sourie a la position souhaité.
+     * @param screenX Position x
+     * @param screenY Position y
+     *//*
+private void moveCursor(double screenX, double screenY) {
+    Platform.runLater(() -> {
+        try {
+            Robot robot = new Robot();
+            robot.mouseMove((int)screenX, (int)screenY);
+        } catch (AWTException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    });
+}
+
+ */

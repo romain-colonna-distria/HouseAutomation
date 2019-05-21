@@ -2,8 +2,6 @@ package controller;
 
 import homeObject.*;
 import homeObject.HomeObject;
-import homeObject.adapter.HomeObjectEntityAdapter;
-import homeObject.adapter.HomeObjectEntityAdapterFactory;
 import homeObject.complex.Field;
 import homeObject.complex.HomeObjectComplex;
 import homeObject.complex.Room;
@@ -21,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import utils.CoordinatesPair;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ConstructHomeController {
@@ -40,11 +39,10 @@ public class ConstructHomeController {
      */
     private HomeObject shape;
 
+    private Label coordinates = new Label();
 
     @FXML
     private Field field;
-
-    private Label coordinates = new Label();
 
     @FXML
     private VBox objectsInformationsVBox;
@@ -58,7 +56,11 @@ public class ConstructHomeController {
     private EventHandler<MouseEvent> moussePressedOnConstructViewforConstructEvent =  new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            shape = HomeObjectFactory.getHomeObejct(shapeName);
+            try {
+                shape = HomeObjectFactory.getHomeObject(shapeName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             coordinatesPair = new CoordinatesPair(event.getX(), event.getY());
 
             if(shape instanceof HomeObjectSimple){
@@ -126,11 +128,10 @@ public class ConstructHomeController {
             homeObjects.add(shape);
 
             if(shape instanceof HomeObjectEntity) {
-                HomeObjectEntityAdapter adapter = HomeObjectEntityAdapterFactory.getAdapter((HomeObjectEntity) shape);
+                HomeObjectEntityAdapter adapter = new HomeObjectEntityAdapter((HomeObjectEntity) shape);
 
                 for(int i = 0; i < objectsInformationsVBox.getChildren().size(); ++i){ //supprime si double
-                    String name = ((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(0)).getText();
-                    System.out.println(name);
+                    String name = ((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(1)).getText();
                     if(name.equals(shape.getName())){
                         objectsInformationsVBox.getChildren().remove(i);
                     }
@@ -206,18 +207,18 @@ public class ConstructHomeController {
     }
 
     @FXML
-    public void buttonObjectEntityClick(Event event){
+    public void buttonObjectEntityClick(Event event) throws IOException {
         stopConstructEventsHandler();
         field.removeEventFilter(MouseEvent.MOUSE_PRESSED, moussePressedOnConstructViewforConstructEntityEvent);
-        shape = HomeObjectFactory.getHomeObejct(((Button)event.getSource()).getId());
+        shape = HomeObjectFactory.getHomeObject(((Button)event.getSource()).getId());
         field.addEventFilter(MouseEvent.MOUSE_PRESSED, moussePressedOnConstructViewforConstructEntityEvent);
     }
 
     @FXML
-    public void buttonRoomClick(Event event){
+    public void buttonRoomClick(Event event) throws IOException {
         stopConstructEventsHandler();
         field.removeEventFilter(MouseEvent.MOUSE_PRESSED, moussePressedOnConstructViewforConstructRoomEvent);
-        shape = HomeObjectFactory.getHomeObejct(((Button)event.getSource()).getId());
+        shape = HomeObjectFactory.getHomeObject(((Button)event.getSource()).getId());
         field.addEventFilter(MouseEvent.MOUSE_PRESSED, moussePressedOnConstructViewforConstructRoomEvent);
     }
 
@@ -231,7 +232,7 @@ public class ConstructHomeController {
         delObjects.add(object);
 
         for(int i = 0; i < objectsInformationsVBox.getChildren().size(); ++i){ //supprime l'objet du menu
-            if(((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(0)).getText().equals(((HomeObjectComplex) shape).getName())){
+            if(((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(0)).getText().equals(shape.getName())){
                 objectsInformationsVBox.getChildren().remove(i);
             }
         }
@@ -255,7 +256,7 @@ public class ConstructHomeController {
      * Démarrage des events handler utiles pour la contruction (ajout de formes sur la zone
      * de construction).
      */
-    public void startConstructEventsHandler(){
+    private void startConstructEventsHandler(){
         field.addEventFilter(MouseEvent.MOUSE_PRESSED, moussePressedOnConstructViewforConstructEvent);
         field.addEventFilter(MouseEvent.DRAG_DETECTED, dragDetectedOnConstructViewForConstructEvent);
         field.addEventFilter(MouseEvent.MOUSE_DRAGGED, mousseDragOnConstructViewForConstructEvent);
@@ -266,7 +267,7 @@ public class ConstructHomeController {
      * Arrêt des events handler utiles pour la contruction (ajout de formes sur la zone
      * de construction).
      */
-    public void stopConstructEventsHandler(){
+    private void stopConstructEventsHandler(){
         field.removeEventFilter(MouseEvent.MOUSE_PRESSED, moussePressedOnConstructViewforConstructEvent);
         field.removeEventFilter(MouseEvent.DRAG_DETECTED, dragDetectedOnConstructViewForConstructEvent);
         field.removeEventFilter(MouseEvent.MOUSE_DRAGGED, mousseDragOnConstructViewForConstructEvent);

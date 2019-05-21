@@ -1,18 +1,32 @@
 package homeObject.entity;
 
+
+import controller.HomeObjectController;
 import homeObject.HomeObject;
 import homeObject.complex.Field;
 import homeObject.complex.HomeObjectComplex;
+import homeObject.observer.Observer;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
-public abstract class HomeObjectEntity extends ImageView implements HomeObject {
+import java.io.IOException;
+
+public abstract class HomeObjectEntity extends ImageView implements HomeObject, Observer {
     private String name;
     private HomeObjectComplex root;
 
+    private FXMLLoader loader;
+    private Pane pane;
 
-    public HomeObjectEntity(String name){
+
+    public HomeObjectEntity(String name, String namefileView) throws IOException {
         super();
         this.name = name;
+
+        this.loader = new FXMLLoader();
+        this.loader.setLocation(getClass().getResource("../../fxml/" + namefileView));
+        pane = this.loader.load();
     }
 
     @Override
@@ -37,5 +51,13 @@ public abstract class HomeObjectEntity extends ImageView implements HomeObject {
 
     public String getName() {
         return name;
+    }
+
+    public HomeObjectController getController(){
+        return loader.getController();
+    }
+
+    public Pane getPane(){
+        return pane;
     }
 }

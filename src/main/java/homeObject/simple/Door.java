@@ -35,8 +35,7 @@ public class Door extends HomeObjectSimple {
 
     @Override
     public boolean isDrawable() {
-        if(getSourceObject() instanceof Wall) return true;
-        return false;
+        return getSourceObject() instanceof Wall;
     }
 
     @Override

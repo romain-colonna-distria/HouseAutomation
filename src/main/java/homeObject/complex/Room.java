@@ -85,6 +85,8 @@ public class Room extends HomeObjectComplex {
         return walls;
     }
 
+
+
     @Override
     public String toString() {
         return "Room{" +

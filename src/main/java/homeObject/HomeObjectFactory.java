@@ -1,13 +1,16 @@
 package homeObject;
 
 import homeObject.complex.Room;
+import homeObject.entity.Radiator;
 import homeObject.entity.Thermometer;
 import homeObject.simple.Door;
 import homeObject.simple.Wall;
 import homeObject.simple.Window;
 
+import java.io.IOException;
+
 public class HomeObjectFactory {
-    public static HomeObject getHomeObejct(String homeObjectName) {
+    public static HomeObject getHomeObject(String homeObjectName) throws IOException {
         switch (homeObjectName){
             case "roomButton":
                 return new Room();
@@ -19,6 +22,8 @@ public class HomeObjectFactory {
                 return new Window();
             case "ThermometerButton":
                 return new Thermometer();
+            case "RadiatorButton":
+                return new Radiator();
             default:
                 return null;
         }

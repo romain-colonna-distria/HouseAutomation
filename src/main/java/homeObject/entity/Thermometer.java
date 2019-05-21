@@ -1,13 +1,17 @@
 package homeObject.entity;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+
+import java.io.IOException;
+
 
 public class Thermometer extends HomeObjectEntity {
     private static int thermometerId = 0;
 
-    public Thermometer(){
-        super("Thermometer" + ++thermometerId);
 
+    public Thermometer() throws IOException {
+        super("Thermometer" + ++thermometerId, "thermometer_view.fxml");
     }
 
     @Override
@@ -21,15 +25,11 @@ public class Thermometer extends HomeObjectEntity {
 
     @Override
     public boolean isDrawable() {
-        return true;
+        return getRoot() != null;
     }
 
-    //@Override
-    public void executeFunction() {
-        getRoot().getTemperature();
-    }
-
-    public static int getThermometerId() {
-        return thermometerId;
+    @Override
+    public synchronized void notifyChange() {
+        ((Label)getPane().getChildren().get(1)).setText(String.valueOf(getRoot().getTemperature()));
     }
 }
