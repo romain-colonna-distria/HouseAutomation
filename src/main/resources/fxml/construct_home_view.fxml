@@ -73,11 +73,11 @@
                         </TitledPane>
                     </panes>
                 </Accordion>
-                <VBox fx:id="objectsInformationsVBox" layoutY="225.0" prefHeight="513.0" prefWidth="237.0"/>
+                <VBox fx:id="objectsInformationsVBox" layoutY="225.0" prefHeight="513.0" prefWidth="237.0" />
                 <Button fx:id="undoButton" layoutX="10.0" layoutY="750.0" mnemonicParsing="false" onMouseClicked="#undo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-image: url('/images/undo.png');" />
                 <Button fx:id="redoButton" layoutX="46.0" layoutY="750.0" mnemonicParsing="false" onMouseClicked="#redo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-image: url('/images/redo.png');" />
             </children>
         </AnchorPane>
-        <Field fx:id="field" layoutX="254.0" layoutY="7.0" prefHeight="787.0" prefWidth="939.0" style="-fx-background-color: #3A9D23; -fx-border-color: black;" />
+        <Field fx:id="field" layoutX="254.0" layoutY="7.0" prefHeight="787.0" prefWidth="939.0" style="-fx-background-color: #c4c7c2; -fx-border-color: black;" />
     </children>
 </AnchorPane>
