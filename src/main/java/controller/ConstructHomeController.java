@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -81,8 +82,7 @@ public class ConstructHomeController {
         }
     };
     /**
-     * Event handler détectant le clique de la sourie (enclanchement du clique) sur la zone de construction.
-     * Initialise le premier point de la paire de coordonnées.
+     * Event handler détectant le drag de la sourie (glissement de la sourie) sur la zone de construction.
      */
     private EventHandler<MouseEvent> dragDetectedOnConstructViewForConstructEvent = new EventHandler<MouseEvent>() {
         @Override
@@ -90,7 +90,9 @@ public class ConstructHomeController {
             field.startFullDrag();
         }
     };
-
+    /**
+     *
+     */
     private EventHandler<MouseEvent> mousseDragOnConstructViewForConstructEvent = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -147,6 +149,7 @@ public class ConstructHomeController {
                 for(int i = 0; i < objectsInformationsVBox.getChildren().size(); ++i){ //supprime si double
                     String name = ((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(1)).getText();
                     if(name.equals(shape.getName())){
+                        //String name = ((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(1)).getText();
                         objectsInformationsVBox.getChildren().remove(i);
                     }
                 }
