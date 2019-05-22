@@ -1,9 +1,7 @@
 package homeObject;
 
 import homeObject.complex.Room;
-import homeObject.entity.AirConditioner;
-import homeObject.entity.Radiator;
-import homeObject.entity.Thermometer;
+import homeObject.entity.*;
 import homeObject.simple.Door;
 import homeObject.simple.Wall;
 import homeObject.simple.Window;
@@ -21,12 +19,16 @@ public class HomeObjectFactory {
                 return new Door();
             case "windowButton":
                 return new Window();
-            case "ThermometerButton":
+            case "thermometerButton":
                 return new Thermometer();
-            case "RadiatorButton":
+            case "radiatorButton":
                 return new Radiator();
-            case "AirConditionerButton":
+            case "airConditionerButton":
                 return new AirConditioner();
+            case "lampButton":
+                return new Lamp();
+            case "luminousFluxMeterButton":
+                return new LuminousFluxMeter();
             default:
                 return null;
         }

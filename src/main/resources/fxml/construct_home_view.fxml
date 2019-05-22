@@ -39,9 +39,11 @@
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="112.0" prefWidth="236.0">
                                                     <children>
-                                                        <Button fx:id="ThermometerButton" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Thermomêtre" />
-                                                        <Button fx:id="RadiatorButton" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Radiateur" />
-                                                        <Button fx:id="AirConditionerButton" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Climatisation" />
+                                                        <Button fx:id="thermometerButton" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Thermomêtre" />
+                                                        <Button fx:id="radiatorButton" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Radiateur" />
+                                                        <Button fx:id="airConditionerButton" layoutY="54.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Climatisation" />
+                                                        <Button fx:id="lampButton" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Lampe" />
+                                                        <Button fx:id="luminousFluxMeterButton" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Capteur luminosité" />
                                                     </children>
                                                 </AnchorPane>
                                             </content>

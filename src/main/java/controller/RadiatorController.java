@@ -17,12 +17,15 @@ public class RadiatorController implements HomeObjectController {
     private EventHandler<ActionEvent> onExpectedTemperatureChange = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("Entré");
             if(expectedTemperatureTextField.getText().isEmpty()) return;
             double expectedTemp = Double.valueOf(expectedTemperatureTextField.getText());
             double actuelTemp = entity.getRoot().getTemperature();
             if(expectedTemp <= actuelTemp) return;
 
+            entity.getRoot().setTemperature(expectedTemp);
+            entity.getRoot().notifyChange();
+
+            /*
             while (expectedTemp != actuelTemp){
                 expectedTemp = Double.valueOf(expectedTemperatureTextField.getText());
                 actuelTemp = entity.getRoot().getTemperature();
@@ -31,8 +34,6 @@ public class RadiatorController implements HomeObjectController {
                     entity.getRoot().increasesTemperature();
                     entity.getRoot().notifyChange();
                 }
-                System.out.println("Temp: " + entity.getRoot().getTemperature());
-
 
                 try {
                     Thread.sleep(1000);
@@ -40,6 +41,8 @@ public class RadiatorController implements HomeObjectController {
                     e.printStackTrace();
                 }
             }
+            */
+            System.out.println("Température de la pièce " + entity.getRoot().getName() + " mis a jour.");
         }
     };
 
