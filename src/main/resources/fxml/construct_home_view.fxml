@@ -31,13 +31,13 @@
                                 </AnchorPane>
                             </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="-10.0" layoutY="-14.0" prefHeight="88.0" prefWidth="220.0" text="Entités">
+                        <TitledPane animated="false" layoutX="-10.0" layoutY="-14.0" prefHeight="175.0" prefWidth="237.0" text="Entités">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="151.0" prefWidth="235.0">
                                     <children>
-                                        <ScrollPane prefHeight="128.0" prefWidth="237.0">
+                                        <ScrollPane prefHeight="129.0" prefWidth="237.0">
                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="112.0" prefWidth="236.0">
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="139.0" prefWidth="236.0">
                                                     <children>
                                                         <Button fx:id="thermometerButton" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Thermomêtre" />
                                                         <Button fx:id="radiatorButton" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#buttonObjectEntityClick" prefHeight="27.0" prefWidth="218.0" text="Radiateur" />
@@ -73,10 +73,16 @@
                         </TitledPane>
                     </panes>
                 </Accordion>
-                <VBox fx:id="objectsInformationsVBox" layoutY="225.0" prefHeight="513.0" prefWidth="237.0" />
+                <VBox fx:id="objectsInformationsVBox" layoutY="225.0" prefHeight="513.0" prefWidth="237.0">
+               <children>
+                  <ScrollPane prefHeight="517.0" prefWidth="237.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="511.0" prefWidth="235.0" />
+                    </content>
+                  </ScrollPane>
+               </children></VBox>
                 <Button fx:id="undoButton" layoutX="10.0" layoutY="750.0" mnemonicParsing="false" onMouseClicked="#undo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-image: url('/images/undo.png');" />
                 <Button fx:id="redoButton" layoutX="46.0" layoutY="750.0" mnemonicParsing="false" onMouseClicked="#redo" prefHeight="27.0" prefWidth="27.0" style="-fx-background-image: url('/images/redo.png');" />
-                <Button fx:id="changeFocusButton" layoutX="200.0" layoutY="750.0" mnemonicParsing="false" onMouseClicked="#changeFocus" prefHeight="27.0" prefWidth="27.0" />
             </children>
         </AnchorPane>
         <Field fx:id="field" layoutX="254.0" layoutY="7.0" prefHeight="787.0" prefWidth="939.0" style="-fx-background-color: #3A9D23; -fx-border-color: black;" />
