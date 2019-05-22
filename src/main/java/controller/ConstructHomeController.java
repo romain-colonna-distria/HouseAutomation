@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -27,31 +28,42 @@ public class ConstructHomeController {
      * Liste de tous les objets (formes) présent dans la contruction.
      */
     private ArrayList<HomeObject> homeObjects = new ArrayList<>();
+    /**
+     * Liste de tous les objets supprimés. Utilisé pour le undo/redo.
+     */
     private ArrayList<HomeObject> delObjects = new ArrayList<>();
     /**
      * Paire de coordonnées utile pour placer les formes.
      */
     private CoordinatesPair coordinatesPair;
-
+    /**
+     * Nom de la forme sélectionné.
+     */
     private String shapeName;
     /**
      * Forme a placer sur le shéma.
      */
     private HomeObject shape;
-
+    /**
+     * Label affichant les coordonnées pointées par la sourie.
+     */
     private Label coordinates = new Label();
-
+    /**
+     * Zone de dessin.
+     */
     @FXML
     private Field field;
-
+    /**
+     * Panneau de gauche regroupant les interface de chaque objects présent.
+     */
     @FXML
     private VBox objectsInformationsVBox;
 
 
 
     /**
-     * Event handler détectant le clique de la sourie (enclanchement du clique) sur la zone de construction
-     * (en mode construction). Initialise le premier point de la paire de coordonnées.
+     * Event handler détectant le clique de la sourie (enclanchement du clique) sur la zone de construction.
+     * Initialise le premier point de la paire de coordonnées.
      */
     private EventHandler<MouseEvent> moussePressedOnConstructViewforConstructEvent =  new EventHandler<MouseEvent>() {
         @Override
@@ -69,14 +81,18 @@ public class ConstructHomeController {
             }
         }
     };
-
+    /**
+     * Event handler détectant le drag de la sourie (glissement de la sourie) sur la zone de construction.
+     */
     private EventHandler<MouseEvent> dragDetectedOnConstructViewForConstructEvent = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             field.startFullDrag();
         }
     };
-
+    /**
+     *
+     */
     private EventHandler<MouseEvent> mousseDragOnConstructViewForConstructEvent = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -133,6 +149,7 @@ public class ConstructHomeController {
                 for(int i = 0; i < objectsInformationsVBox.getChildren().size(); ++i){ //supprime si double
                     String name = ((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(1)).getText();
                     if(name.equals(shape.getName())){
+                        //String name = ((Label)((AnchorPane)objectsInformationsVBox.getChildren().get(i)).getChildren().get(1)).getText();
                         objectsInformationsVBox.getChildren().remove(i);
                     }
                 }
@@ -245,11 +262,6 @@ public class ConstructHomeController {
         delObjects.remove(object);
         homeObjects.add(object);
         field.getChildren().add((Node) object);
-    }
-
-    @FXML
-    public void changeFocus(Event event){
-        stopConstructEventsHandler();
     }
 
     /**
