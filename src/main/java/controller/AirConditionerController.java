@@ -16,20 +16,14 @@ public class AirConditionerController implements HomeObjectController {
     private EventHandler<ActionEvent> onExpectedTemperatureChange = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("Entré");
             if(expectedTemperatureTextField.getText().isEmpty()) return;
             double expectedTemp = Double.valueOf(expectedTemperatureTextField.getText());
             double actuelTemp = entity.getRoot().getTemperature();
             if(expectedTemp >= actuelTemp) return;
 
-            while (expectedTemp != actuelTemp){
-                expectedTemp = Double.valueOf(expectedTemperatureTextField.getText());
-                actuelTemp = entity.getRoot().getTemperature();
-
-                if (expectedTemp < actuelTemp){
-                    entity.getRoot().setTemperature(expectedTemp);
-                    entity.getRoot().notifyChange();
-                }
+            if (expectedTemp < actuelTemp){
+                entity.getRoot().setTemperature(expectedTemp);
+                entity.getRoot().notifyChange();
             }
         }
     };
