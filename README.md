@@ -20,8 +20,9 @@ Vous pouvez maintenant équiper la maison. Les objects domotiques se trouvent da
 
 ## Compilation
 Pour récupérer le projet:
-- git clone https://github.com/romain-colonna-distria/HouseAutomation.git
-Il suffit ensuite d'ouvrir le projet dans un IDE et d'exécuter la classe principal ConstructHomeApplication situé
+- git clone https://github.com/romain-colonna-distria/HouseAutomation.git.
+
+Il suffit ensuite d'ouvrir le projet dans un IDE et d'exécuter la classe principale ConstructHomeApplication situé
 dans le répertoire src/main/java
 
 
