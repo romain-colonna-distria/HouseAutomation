@@ -18,12 +18,6 @@ Vous pouvez maintenant équiper la maison. Les objects domotiques se trouvent da
 "Entités". 
 
 
-##Objets disponibles
-- Thermomêtre : 
-- Radiateur : 
-- Climatisation :
-
-
 ##Équipe
 - ![Romain Colonna D'Istria](https://github.com/romain-colonna-distria)
 - ![Charlie Follet](https://github.com/charlieFollet)
