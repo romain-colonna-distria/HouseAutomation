@@ -1,9 +1,9 @@
-#House Automation
+# House Automation
 House Automation est un projet mené dans le cadre de la Licence 3 Informatique 
 sur le site de Luminy. Celui-ci vise en la création d'un simulateur de maison domotique.
 
 
-##Guide d'utilisation
+## Guide d'utilisation
 Pour commencer, il est nécessaire de construire une maison. Pour cela, il suffit de 
 sélectionner les murs dans le menu de gauche onglet "Objets". Une fois sélectionnés, 
 cliquez à l'endroit souhaité sur la zone de dessin et étirez le mur. Un mur ne peut être 
@@ -18,7 +18,14 @@ Vous pouvez maintenant équiper la maison. Les objects domotiques se trouvent da
 "Entités". 
 
 
-##Équipe
+## Compilation
+Pour récupérer le projet:
+- git clone https://github.com/romain-colonna-distria/HouseAutomation.git
+Il suffit ensuite d'ouvrir le projet dans un IDE et d'exécuter la classe principal ConstructHomeApplication situé
+dans le répertoire src/main/java
+
+
+## Équipe
 - ![Romain Colonna D'Istria](https://github.com/romain-colonna-distria)
 - ![Charlie Follet](https://github.com/charlieFollet)
 - ![Cyril Roubaud](https://github.com/roubaud-cyril)
